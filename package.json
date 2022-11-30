@@ -1,0 +1,22 @@
+{
+  "name": "moleculer-db-s3db-adapter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forattini-dev/moleculer-db-s3db-adapter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/forattini-dev/moleculer-db-s3db-adapter/issues"
+  },
+  "homepage": "https://github.com/forattini-dev/moleculer-db-s3db-adapter#readme",
+  "dependencies": {
+    "s3db.js": "https://github.com/forattini-dev/s3db.js"
+  }
+}
