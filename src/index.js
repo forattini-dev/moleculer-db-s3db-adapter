@@ -211,6 +211,17 @@ class S3dbAdapter {
   }
 
 	/**
+	 * Convert DB entity to JSON object.
+	 * @param {Object} entity
+	 * @returns {Object}
+	 * @memberof MongoDbAdapter
+	 */
+	entityToObject(entity) {
+		let json = Object.assign({}, entity);
+		return json;
+	}
+
+	/**
 	* Transforms 'idField' into MongoDB's 'id'
 	* @param {Object} entity
 	* @param {String} idField
