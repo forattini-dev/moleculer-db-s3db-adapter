@@ -172,11 +172,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   updateById(id, update) {
-    return this.collection
-      .findOneAndUpdate({ id }, update, {
-        returnOriginal: false,
-      })
-      .then((res) => res.value);
+    return this.resource.updateById(id, update)
   }
 
   /**
@@ -196,9 +192,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   removeById(id) {
-    return this.collection
-      .findOneAndDelete({ id: (id) })
-      .then((res) => res.value);
+    return this.resource.deleteById(id)
   }
 
   /**
