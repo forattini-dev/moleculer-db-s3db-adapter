@@ -200,7 +200,7 @@ querystring@0.2.0:
 
 "s3db.js@https://github.com/forattini-dev/s3db.js":
   version "1.0.0"
-  resolved "https://github.com/forattini-dev/s3db.js#d6d349719f7e4d9e6e58c90c5bb6f4fcbddfbeab"
+  resolved "https://github.com/forattini-dev/s3db.js#80c13a7390bef6f7830b41aa73319333d518711e"
   dependencies:
     "@supercharge/promise-pool" "^2.3.2"
     avsc "^5.7.7"
