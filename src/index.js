@@ -97,12 +97,12 @@ class S3dbAdapter {
 
   /**
    * Find an entities by ID.
-   * @param {String} _id
+   * @param {String} id
    * @returns {Promise<Object>} Return with the found document.
    * @memberof MongoDbAdapter
    */
-  findById(_id) {
-    return this.resource.getById(_id);
+  findById(id) {
+    return this.resource.getById(id);
   }
 
   /**
@@ -166,14 +166,14 @@ class S3dbAdapter {
 
   /**
    * Update an entity by ID and `update`
-   * @param {String} _id - ObjectID as hexadecimal string.
+   * @param {String} id - ObjectID as hexadecimal string.
    * @param {Object} update
    * @returns {Promise<Object>} Return with the updated document.
    * @memberof MongoDbAdapter
    */
-  updateById(_id, update) {
+  updateById(id, update) {
     return this.collection
-      .findOneAndUpdate({ _id: this.stringToObjectID(_id) }, update, {
+      .findOneAndUpdate({ id }, update, {
         returnOriginal: false,
       })
       .then((res) => res.value);
@@ -191,13 +191,13 @@ class S3dbAdapter {
 
   /**
    * Remove an entity by ID
-   * @param {String} _id - ObjectID as hexadecimal string.
+   * @param {String} id - ObjectID as hexadecimal string.
    * @returns {Promise<Object>} Return with the removed document.
    * @memberof MongoDbAdapter
    */
-  removeById(_id) {
+  removeById(id) {
     return this.collection
-      .findOneAndDelete({ _id: this.stringToObjectID(_id) })
+      .findOneAndDelete({ id: (id) })
       .then((res) => res.value);
   }
 
@@ -211,7 +211,7 @@ class S3dbAdapter {
   }
 
 	/**
-	* Transforms 'idField' into MongoDB's '_id'
+	* Transforms 'idField' into MongoDB's 'id'
 	* @param {Object} entity
 	* @param {String} idField
 	* @memberof MongoDbAdapter
@@ -219,7 +219,28 @@ class S3dbAdapter {
 	*/
 	beforeSaveTransformID (entity, idField) {
 		let newEntity = _.cloneDeep(entity);
+
+		if (idField !== "id" && entity[idField] !== undefined) {
+			newEntity.id = newEntity[idField]
+			delete newEntity[idField];
+		}
+
 		return newEntity;
+	}
+
+	/**
+	* Transforms MongoDB's 'id' into user defined 'idField'
+	* @param {Object} entity
+	* @param {String} idField
+	* @memberof MongoDbAdapter
+	* @returns {Object} Modified entity
+	*/
+	afterRetrieveTransformID (entity, idField) {
+		if (idField !== "id") {
+			entity[idField] = entity["id"]
+			delete entity.id;
+		}
+		return entity;
 	}
 }
 
