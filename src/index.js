@@ -209,6 +209,18 @@ class S3dbAdapter {
   clear() {
     return this.resource.deleteAll();
   }
+
+	/**
+	* Transforms 'idField' into MongoDB's '_id'
+	* @param {Object} entity
+	* @param {String} idField
+	* @memberof MongoDbAdapter
+	* @returns {Object} Modified entity
+	*/
+	beforeSaveTransformID (entity, idField) {
+		let newEntity = _.cloneDeep(entity);
+		return newEntity;
+	}
 }
 
 module.exports = S3dbAdapter;
