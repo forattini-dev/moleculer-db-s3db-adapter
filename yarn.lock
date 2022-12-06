@@ -2171,7 +2171,7 @@ resolve@^1.20.0:
 
 "s3db.js@https://github.com/forattini-dev/s3db.js":
   version "1.0.0"
-  resolved "https://github.com/forattini-dev/s3db.js#6bd6011bde6900c294ff633553d75b9a3a09f500"
+  resolved "https://github.com/forattini-dev/s3db.js#f2e195bb4d7acfff73072f31f71e793c2501d899"
   dependencies:
     "@supercharge/promise-pool" "^2.3.2"
     avsc "^5.7.7"

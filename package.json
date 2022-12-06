@@ -1,19 +1,20 @@
 {
   "name": "moleculer-db-s3db-adapter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Moleculer DB Adapter for S3db.js",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest --coverage ./test"
+    "test": "jest --coverage ./test",
+    "test:adapter": "jest --coverage ./test/adapter.test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/forattini-dev/moleculer-db-s3db-adapter.git"
   },
-  "author": "",
+  "author": "filipeforattini",
   "license": "ISC",
   "dependencies": {
-    "s3db.js": "https://github.com/forattini-dev/s3db.js"
+    "s3db.js": "1.0.6"
   },
   "devDependencies": {
     "dotenv": "^16.0.3",
@@ -21,5 +22,18 @@
     "moleculer": "^0.14.26",
     "moleculer-db": "^0.8.20",
     "nanoid": "^3.3.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/forattini-dev/moleculer-db-s3db-adapter/issues"
+  },
+  "homepage": "https://github.com/forattini-dev/moleculer-db-s3db-adapter#readme",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "Moleculer",
+    "S3",
+    "Aws",
+    "s3db.js"
+  ]
 }
