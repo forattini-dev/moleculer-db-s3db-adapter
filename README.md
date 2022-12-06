@@ -1,6 +1,6 @@
 # moleculer-db-s3db-adapter
 
-S3db.js adapter for Moleculer DB service.
+[`s3db.js`](https://github.com/forattini-dev/s3db.js) adapter for Moleculer DB service.
 
 ## Install
 
