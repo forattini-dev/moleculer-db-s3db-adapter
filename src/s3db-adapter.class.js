@@ -82,7 +82,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   find(filters) {
-    return this.createCursor(filters, false).toArray();
+    return this.resource.getAll();
   }
 
   /**
@@ -92,7 +92,7 @@ class S3dbAdapter {
    * @memberof MemoryDbAdapter
    */
   findOne(query) {
-    return this.collection.findOne(query);
+    return this.find({ query }).then((list) => list.pop());
   }
 
   /**

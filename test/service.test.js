@@ -11,7 +11,17 @@ const RESOURCE_ATTRIBUTES = {
 };
 
 describe("resources", () => {
-  let broker = BrokerFactory();
+  let broker = BrokerFactory({
+    resource: {
+      name: 'posts',
+      schema: {
+        title: "string",
+        content: "string",
+        votes: "number",
+        token: "secret",
+      }
+    }
+  });
 
   beforeAll(async function () {
     await broker.start();
