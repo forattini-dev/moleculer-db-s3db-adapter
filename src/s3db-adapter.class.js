@@ -49,12 +49,14 @@ class S3dbAdapter {
 
     await this.s3db.connect();
 
-    const { name, schema } = this.service.schema.resource;
+    const { name, schema: attributes } = this.service.schema.resource;
 
-    await this.s3db.createResource({
-      resourceName: name,
-      attributes: schema,
-    });
+    if (!this.s3db.resources[name]) {
+      await this.s3db.createResource({
+        name,
+        attributes,
+      });
+    }
 
     this.resource = this.s3db.resource(name);
   }
@@ -102,7 +104,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   findById(id) {
-    return this.resource.getById(id);
+    return this.resource.get(id);
   }
 
   /**
@@ -112,7 +114,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   findByIds(idList) {
-    return this.resource.getByIdList(idList);
+    return this.resource.getMany(idList);
   }
 
   /**
@@ -148,7 +150,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   insertMany(entities) {
-    return this.resource.bulkInsert(entities);
+    return this.resource.insertMany(entities);
   }
 
   /**
@@ -172,7 +174,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   updateById(id, update) {
-    return this.resource.updateById(id, update['$set'])
+    return this.resource.update(id, update["$set"]);
   }
 
   /**
@@ -182,7 +184,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   removeMany(query) {
-    return this.resource.bulkDelete(query);
+    return this.resource.deleteMany(query);
   }
 
   /**
@@ -192,7 +194,7 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   removeById(id) {
-    return this.resource.deleteById(id)
+    return this.resource.delete(id);
   }
 
   /**
@@ -204,49 +206,49 @@ class S3dbAdapter {
     return this.resource.deleteAll();
   }
 
-	/**
-	 * Convert DB entity to JSON object.
-	 * @param {Object} entity
-	 * @returns {Object}
-	 * @memberof MongoDbAdapter
-	 */
-	entityToObject(entity) {
-		let json = Object.assign({}, entity);
-		return json;
-	}
+  /**
+   * Convert DB entity to JSON object.
+   * @param {Object} entity
+   * @returns {Object}
+   * @memberof MongoDbAdapter
+   */
+  entityToObject(entity) {
+    let json = Object.assign({}, entity);
+    return json;
+  }
 
-	/**
-	* Transforms 'idField' into MongoDB's 'id'
-	* @param {Object} entity
-	* @param {String} idField
-	* @memberof MongoDbAdapter
-	* @returns {Object} Modified entity
-	*/
-	beforeSaveTransformID (entity, idField) {
-		let newEntity = _.cloneDeep(entity);
+  /**
+   * Transforms 'idField' into MongoDB's 'id'
+   * @param {Object} entity
+   * @param {String} idField
+   * @memberof MongoDbAdapter
+   * @returns {Object} Modified entity
+   */
+  beforeSaveTransformID(entity, idField) {
+    let newEntity = _.cloneDeep(entity);
 
-		if (idField !== "id" && entity[idField] !== undefined) {
-			newEntity.id = newEntity[idField]
-			delete newEntity[idField];
-		}
+    if (idField !== "id" && entity[idField] !== undefined) {
+      newEntity.id = newEntity[idField];
+      delete newEntity[idField];
+    }
 
-		return newEntity;
-	}
+    return newEntity;
+  }
 
-	/**
-	* Transforms MongoDB's 'id' into user defined 'idField'
-	* @param {Object} entity
-	* @param {String} idField
-	* @memberof MongoDbAdapter
-	* @returns {Object} Modified entity
-	*/
-	afterRetrieveTransformID (entity, idField) {
-		if (idField !== "id") {
-			entity[idField] = entity["id"]
-			delete entity.id;
-		}
-		return entity;
-	}
+  /**
+   * Transforms MongoDB's 'id' into user defined 'idField'
+   * @param {Object} entity
+   * @param {String} idField
+   * @memberof MongoDbAdapter
+   * @returns {Object} Modified entity
+   */
+  afterRetrieveTransformID(entity, idField) {
+    if (idField !== "id") {
+      entity[idField] = entity["id"];
+      delete entity.id;
+    }
+    return entity;
+  }
 }
 
 module.exports = S3dbAdapter;

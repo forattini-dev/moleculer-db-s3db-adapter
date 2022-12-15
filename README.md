@@ -1,13 +1,18 @@
 # moleculer-db-s3db-adapter
 
+[![license: unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/) [![npm version](https://img.shields.io/npm/v/moleculer-db-s3db-adapter.svg?style=flat)](https://www.npmjs.com/package/moleculer-db-s3db-adapter) [![Maintainability](https://api.codeclimate.com/v1/badges/26e3dc46c42367d44f18/maintainability)](https://codeclimate.com/github/forattini-dev/moleculer-db-s3db-adapter/maintainability) [![Coverage Status](https://coveralls.io/repos/github/forattini-dev/moleculer-db-s3db-adapter/badge.svg?branch=main)](https://coveralls.io/github/forattini-dev/moleculer-db-s3db-adapter?branch=main)
+
+
 [`s3db.js`](https://github.com/forattini-dev/s3db.js) adapter for Moleculer DB service.
 
 ## Install
 
 ```bash
 $ npm install moleculer-db moleculer-db-s3db-adapter --save
+
 # or
-$ yarn add moleculer-db moleculer-db-s3db-adapter --save
+
+$ yarn add moleculer-db moleculer-db-s3db-adapter
 ```
 
 ## Usage
