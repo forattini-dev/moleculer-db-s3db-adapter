@@ -2442,10 +2442,10 @@ resolve@^1.20.0:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-s3db.js@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/s3db.js/-/s3db.js-2.0.0.tgz#ca4152b777d82e228ee6561491f006fe430400c5"
-  integrity sha512-5umtaj3HsOwOb/di/AFVYVhWQ7TI0+dAMgAWiMiKtT8jOOlqEYwu/UJNEmXJ4lHOfU2FyXttCpHSQomsztJNpA==
+s3db.js@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/s3db.js/-/s3db.js-2.1.1.tgz#ff08bb01ddf59b286a22ae1984e38e8c5614e130"
+  integrity sha512-b61QuCSQDFjOjyeB0CUCv18qUF3BG2b88em8Iamy29qbhb99LVUQwQZXfETXET8YFh1Ch7gJPP25CMU942dteg==
   dependencies:
     "@supercharge/promise-pool" "^2.3.2"
     avsc "^5.7.7"

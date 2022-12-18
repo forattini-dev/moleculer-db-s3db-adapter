@@ -84,7 +84,12 @@ class S3dbAdapter {
    * @memberof MongoDbAdapter
    */
   find(filters) {
-    return this.resource.getAll();
+    const { offset = 0, limit = 100} = filters
+
+    return this.resource.page({
+      offset,
+      size: limit,
+    });
   }
 
   /**
